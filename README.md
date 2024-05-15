@@ -24,7 +24,6 @@ First, you need to get all tokens and ids from appropriate developer portals.
   - Battle.net secret key
 
 - Discord:
-  - Discord token
   - Discord bot token
   - Discrod app id
   - Discrod guild id
