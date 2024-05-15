@@ -1,0 +1,21 @@
+name: wow-token-bot
+
+services:
+  application:
+    container_name: wow-token-bot
+    image: node:lts-alpine
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:/home/node
+    working_dir: /home/node/
+    environment:
+      - HOST=0.0.0.0
+      - BNET_CLIENT_ID=$BNET_CLIENT_ID
+      - BNET_SECRET=$BNET_SECRET
+      - DISCORD_TOKEN=$DISCORD_TOKEN
+      - DISCORD_BOT_TOKEN=$DISCORD_BOT_TOKEN
+      - APP_ID=$APP_ID
+      - GUILD_ID=$GUILD_ID
+    tty: true
+    command: 'npm run start:watch'
