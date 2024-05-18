@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, GatewayIntentBits, Events, Collection } = require('discord.js');
 const { readCommands } = require('./utils/readCommands');
 const { readEvents } = require('./utils/readEvents');
-require('dotenv').config();
+const AuthClient = require('./api/auth');
 
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 
@@ -32,3 +34,14 @@ events.forEach((event) => {
 });
 
 client.login(DISCORD_BOT_TOKEN);
+
+const oauth = new AuthClient({
+  clientId: process.env.BNET_CLIENT_ID,
+  secret: process.env.BNET_SECRET,
+});
+
+(async () => {
+  await oauth.authenticate();
+  console.log(oauth.token);
+  console.log(oauth.expiration);
+})();
