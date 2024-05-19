@@ -3,18 +3,11 @@ name: wow-token-bot
 services:
   application:
     container_name: wow-token-bot
-    image: node:lts-alpine
-    ports:
-      - '3000:3000'
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     volumes:
-      - ./:/home/node
-    working_dir: /home/node/
-    environment:
-      - HOST=0.0.0.0
-      - BNET_CLIENT_ID=$BNET_CLIENT_ID
-      - BNET_SECRET=$BNET_SECRET
-      - DISCORD_BOT_TOKEN=$DISCORD_BOT_TOKEN
-      - DISCORD_CLIENT_ID=$DISCORD_CLIENT_ID
-      - DISCORD_GUILD_ID=$DISCORD_GUILD_ID
+      - ./:/home/node/bot
+    env_file:
+      - .env
     tty: true
-    command: 'npm run start:watch'

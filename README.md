@@ -29,3 +29,6 @@ First, you need to get all tokens and ids from appropriate developer portals.
   - Discrod guild id
 
 ### Installing packages
+
+1. Copy the source code to the host
+2.

@@ -1,11 +1,10 @@
 {
   "name": "wow-token-bot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/app.js",
-    "start:watch": "nodemon ./src/app.js",
+    "watch": "nodemon ./src/app.js",
     "deploy": "node ./src/deploy.js",
     "delete:commands": "node ./src/discord/deleteAllCommands.js"
   },
