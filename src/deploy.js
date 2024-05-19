@@ -1,7 +1,7 @@
-const { REST, Routes } = require('discord.js');
-const { readCommands } = require('../utils/readCommands');
-
 require('dotenv').config();
+
+const { REST, Routes } = require('discord.js');
+const price = require('./commands/price');
 
 const clientId = process.env.DISCORD_CLIENT_ID;
 const guildId = process.env.DISCORD_GUILD_ID;
@@ -11,8 +11,8 @@ if (!clientId || !guildId || !token) {
   throw new Error('Credentials environment varibales are not defined');
 }
 
-const commands = readCommands([__dirname, 'commands']);
-const json = commands.map((command) => command.data.toJSON());
+const priceCommand = price();
+const json = [priceCommand.data.toJSON()];
 
 const rest = new REST().setToken(token);
 

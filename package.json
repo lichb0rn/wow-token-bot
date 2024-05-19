@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/app.js",
-    "start:watch": "nodemon ./src/app.js"
+    "start:watch": "nodemon ./src/app.js",
+    "deploy": "node ./src/deploy.js",
+    "delete:commands": "node ./src/discord/deleteAllCommands.js"
   },
   "keywords": [
     "world of warcraft",

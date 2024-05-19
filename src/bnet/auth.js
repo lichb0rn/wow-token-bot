@@ -5,11 +5,16 @@ class AuthClient {
     this.expiration = null;
   }
 
-  async authenticate() {
+  async getToken() {
     if (this.token && !this.isTokenExpired) {
       return this.token;
+    } else {
+      await this.authenticate();
+      return this.token;
     }
+  }
 
+  async authenticate() {
     const { clientId, secret } = this.options;
     try {
       const data = await fetch(`https://oauth.battle.net/token`, {
