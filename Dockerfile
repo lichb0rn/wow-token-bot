@@ -1,11 +1,16 @@
-FROM node:lts-alpine
+ARG NODE_VERSION=22.3.0
+FROM node:${NODE_VERSION}-alpine
+ENV NODE_ENV production
 
-RUN mkdir -p /home/node/bot
-WORKDIR /home/node/bot
+WORKDIR /usr/src/app
 
-COPY package.json /home/node/bot
+RUN --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=cache,target=/root/.npm \
+    npm ci --omit=dev
 
-RUN npm install
+USER node
 
-CMD ["npm", "start"]
+COPY . .
 
+CMD npm start
